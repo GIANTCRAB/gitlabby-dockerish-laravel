@@ -6,7 +6,7 @@ variables:
   MYSQL_ROOT_PASSWORD: secret
 
 phpunit:php-laravel-env:mysql:
-  image: woohuiren/php-laravel-env:latest
+  image: woohuiren/php-laravel-env:5.3
   services:
     - mysql:latest
   script:
