@@ -1,13 +1,34 @@
+image: woohuiren/php-laravel-env:5.3
+
+services:
+  - mysql:latest
+
 before_script:
-  - bash .gitlab-ci.sh
+  - bash .gitlab-key-inject.sh # Script injection for SSH keys used for deployments
 
 variables:
   MYSQL_DATABASE: laravel
   MYSQL_ROOT_PASSWORD: secret
+  GIT_DEPLOYMENT_REMOTE: staging
+  GIT_DEPLOYMENT_BRANCH: master
+  SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
 
-phpunit:php-laravel-env:mysql:
-  image: woohuiren/php-laravel-env:5.3
-  services:
-    - mysql:latest
+stages:
+  - build
+  - test
+  - staging_deploy
+
+build_job:
+  stage: build
   script:
-    - php vendor/bin/phpunit --colors
+    - bash .gitlab-build.sh
+
+test_job:
+  stage: test
+  script:
+    - bash .gitlab-test.sh
+
+stage_job:
+  stage: staging_deploy
+  script:
+    - bash .gitlab-staging-deploy.sh

@@ -13,9 +13,6 @@ php -v
 # Ensure that mysql server is up and running
 ping -c 3 mysql
 
-# Update packages
-apt-get update -y
-
 # Update project dependencies.
 php composer.phar update
 
@@ -26,7 +23,7 @@ cp -v .env.gitlab-testing .env
 php artisan key:generate
 php artisan optimize
 php artisan config:clear
-php artisan route:cache
+#php artisan route:cache # Uncomment this if you do not use closures in your route files as this helps to improve performance
 
 # Run database migrations and seed the data
 php artisan migrate --seed
