@@ -36,6 +36,8 @@ stage_job:
   stage: staging_deploy
   script:
     - bash .gitlab-staging-deploy.sh
+environment:
+    name: staging
 ```
 
 ## I need to deploy to staging or somewhere
@@ -53,6 +55,7 @@ Ensure that your repository has set a Git deployment remote and you have created
 Open up `.gitlab-ci.yml` and set the variables for the following: 
 
 ```
+  GIT_DEPLOYMENT_URL: git@gitlab.com:woohuiren/test-laravel-project.git
   GIT_DEPLOYMENT_REMOTE: staging
   GIT_DEPLOYMENT_BRANCH: master
   SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead

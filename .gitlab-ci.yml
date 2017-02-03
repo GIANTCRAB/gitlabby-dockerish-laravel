@@ -9,6 +9,7 @@ before_script:
 variables:
   MYSQL_DATABASE: laravel
   MYSQL_ROOT_PASSWORD: secret
+  GIT_DEPLOYMENT_URL: git@gitlab.com:woohuiren/test-laravel-project.git
   GIT_DEPLOYMENT_REMOTE: staging
   GIT_DEPLOYMENT_BRANCH: master
   SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
@@ -32,3 +33,5 @@ stage_job:
   stage: staging_deploy
   script:
     - bash .gitlab-staging-deploy.sh
+  environment:
+    name: staging
