@@ -36,7 +36,7 @@ stage_job:
   stage: staging_deploy
   script:
     - bash .gitlab-staging-deploy.sh
-environment:
+  environment:
     name: staging
 ```
 
