@@ -14,7 +14,9 @@ To switch between Laravel versions, change this repository's branch. Master bran
 
 # Usage
 
-## I don't need to deploy anywhere
+There are two ways which this can be used -- for continuous integration and continuous deployment. 
+
+## Continuous Integration
 Copy the following files and drop them in your Laravel base repository: 
 
 * .env.gitlab-testing
@@ -27,9 +29,7 @@ Open up `.gitlab-ci.yml` and comment or remove the staging information:
 ```
 before_script:
   - bash .gitlab-key-inject.sh # Script injection for SSH keys used for deployments
-
 ...
-
   - staging_deploy
 ...
 stage_job:
@@ -40,7 +40,12 @@ stage_job:
     name: staging
 ```
 
-## I need to deploy to staging or somewhere
+## Continuous Deployment
+
+There are two types of deployment techniques that are commonly used, a push and pull. A push configuration requires the remote endpoint to be a Git server whereas a pull configuration would only require SSH details. Nevertheless, there are different variables required for setting these deployments.
+
+### Push configuration
+
 Copy the following files and drop them in your Laravel base repository: 
 
 * .env.gitlab-testing
@@ -59,4 +64,32 @@ Open up `.gitlab-ci.yml` and set the variables for the following:
   GIT_DEPLOYMENT_REMOTE: staging
   GIT_DEPLOYMENT_BRANCH: master
   SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
+```
+
+### Pull configuration
+
+Copy the following files and drop them in your Laravel base repository: 
+
+* .env.gitlab-testing
+* .gitlab-ci.yml
+* .gitlab-key-inject.sh
+* .gitlab-build.sh
+* .gitlab-test.sh
+* .gitlab-staging-pull-deploy.sh
+
+The SSH private key is used for accessing the staging server. Please ensure that your staging server already has SSH keys necessary to pull the code from the GitLab server.
+
+Open up `.gitlab-ci.yml` and set the variables for the following: 
+
+```
+  GIT_DEPLOYMENT_REMOTE: origin
+  GIT_DEPLOYMENT_BRANCH: master
+  SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
+  STAGING_SERVER_HOSTNAME: admin@localhost
+  STAGING_SERVER_DIRECTORY: /home/admin/laravel-project/public
+...
+stage_job:
+  stage: staging_deploy
+  script:
+    - bash .gitlab-staging-pull-deploy.sh
 ```

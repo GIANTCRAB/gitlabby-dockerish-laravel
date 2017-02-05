@@ -9,10 +9,12 @@ before_script:
 variables:
   MYSQL_DATABASE: laravel
   MYSQL_ROOT_PASSWORD: secret
-  GIT_DEPLOYMENT_URL: git@gitlab.com:woohuiren/test-laravel-project.git
-  GIT_DEPLOYMENT_REMOTE: staging
-  GIT_DEPLOYMENT_BRANCH: master
   SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
+  GIT_DEPLOYMENT_URL: git@gitlab.com:woohuiren/test-laravel-project.git # Used for PUSH deployments
+  GIT_DEPLOYMENT_REMOTE: staging # Used for PUSH and PULL deployments
+  GIT_DEPLOYMENT_BRANCH: master # Used for PUSH and PULL deployments
+  STAGING_SERVER_HOSTNAME: admin@localhost # Used for PULL deployments
+  STAGING_SERVER_DIRECTORY: /home/admin/laravel-project/public # Used for PULL deployments
 
 stages:
   - build
@@ -32,6 +34,6 @@ test_job:
 stage_job:
   stage: staging_deploy
   script:
-    - bash .gitlab-staging-deploy.sh
+    - bash .gitlab-staging-deploy.sh # Change this to .gitlab-staging-pull-deploy.sh for PULL deployments
   environment:
     name: staging
