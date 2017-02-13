@@ -25,11 +25,24 @@ build_job:
   stage: build
   script:
     - bash .gitlab-build.sh
+  artifacts:
+    paths:
+      - vendor/
+      - bootstrap/
+      - composer.phar
+      - composer.lock
+      - .env
+  tags:
+    - docker
 
 test_job:
   stage: test
+  dependencies:
+    - build_job
   script:
     - bash .gitlab-test.sh
+  tags:
+    - docker
 
 stage_job:
   stage: staging_deploy
