@@ -1,13 +1,52 @@
+image: woohuiren/php-laravel-env:master
+
+services:
+  - mysql:latest
+
 before_script:
-  - bash .gitlab-ci.sh
+  - bash .gitlab-key-inject.sh # Script injection for SSH keys used for deployments
 
 variables:
   MYSQL_DATABASE: laravel
   MYSQL_ROOT_PASSWORD: secret
+  SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
+  GIT_DEPLOYMENT_URL: git@gitlab.com:woohuiren/test-laravel-project.git # Used for PUSH deployments
+  GIT_DEPLOYMENT_REMOTE: staging # Used for PUSH and PULL deployments
+  GIT_DEPLOYMENT_BRANCH: master # Used for PUSH and PULL deployments
+  STAGING_SERVER_HOSTNAME: admin@localhost # Used for PULL deployments
+  STAGING_SERVER_DIRECTORY: /home/admin/laravel-project/public # Used for PULL deployments
 
-phpunit:php-laravel-env:mysql:
-  image: woohuiren/php-laravel-env:latest
-  services:
-    - mysql:latest
+stages:
+  - build
+  - test
+  - staging_deploy
+
+build_job:
+  stage: build
   script:
-    - php vendor/bin/phpunit --colors
+    - bash .gitlab-build.sh
+  artifacts:
+    paths:
+      - vendor/
+      - bootstrap/
+      - composer.phar
+      - composer.lock
+      - .env
+  tags:
+    - docker
+
+test_job:
+  stage: test
+  dependencies:
+    - build_job
+  script:
+    - bash .gitlab-test.sh
+  tags:
+    - docker
+
+stage_job:
+  stage: staging_deploy
+  script:
+    - bash .gitlab-staging-deploy.sh # Change this to .gitlab-staging-pull-deploy.sh for PULL deployments
+  environment:
+    name: staging
