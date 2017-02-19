@@ -9,4 +9,4 @@ php -v
 ping -c 3 mysql
 
 # Run unit testing with PHPUnit
-php vendor/bin/phpunit --colors
+php vendor/bin/phpunit --coverage-text --colors=never
