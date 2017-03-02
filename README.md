@@ -28,14 +28,14 @@ Open up `.gitlab-ci.yml` and comment or remove the staging information:
 
 ```
 before_script:
-  - bash .gitlab-key-inject.sh # Script injection for SSH keys used for deployments
+  - sh .gitlab-key-inject.sh # Script injection for SSH keys used for deployments
 ...
   - staging_deploy
 ...
 stage_job:
   stage: staging_deploy
   script:
-    - bash .gitlab-staging-deploy.sh
+    - sh .gitlab-staging-deploy.sh
   environment:
     name: staging
 ```
@@ -91,5 +91,5 @@ Open up `.gitlab-ci.yml` and set the variables for the following:
 stage_job:
   stage: staging_deploy
   script:
-    - bash .gitlab-staging-pull-deploy.sh
+    - sh .gitlab-staging-pull-deploy.sh
 ```
