@@ -4,8 +4,6 @@ set -eo pipefail
 
 # Move the files over to current directory
 mv /root/composer.phar .
-mv /root/composer.lock .
-mv /root/vendor .
 
 # Ensure that php is working
 php -v
@@ -14,7 +12,7 @@ php -v
 ping -c 3 mysql
 
 # Update project dependencies.
-php composer.phar update
+php composer.phar install
 
 # Copy over testing configuration. This configuration is used for Gitlab CI unit testing
 cp -v .env.gitlab-testing .env

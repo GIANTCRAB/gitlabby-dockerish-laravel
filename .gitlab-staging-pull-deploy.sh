@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Ensure we fail fast if there is a problem.
 set -eo pipefail
 

@@ -4,7 +4,7 @@ services:
   - mysql:latest
 
 before_script:
-  - bash .gitlab-key-inject.sh # Script injection for SSH keys used for deployments
+  - sh .gitlab-key-inject.sh # Script injection for SSH keys used for deployments
 
 variables:
   MYSQL_DATABASE: laravel
@@ -24,13 +24,12 @@ stages:
 build_job:
   stage: build
   script:
-    - bash .gitlab-build.sh
+    - sh .gitlab-build.sh
   artifacts:
     paths:
       - vendor/
       - bootstrap/
       - composer.phar
-      - composer.lock
       - .env
   tags:
     - docker
@@ -40,13 +39,13 @@ test_job:
   dependencies:
     - build_job
   script:
-    - bash .gitlab-test.sh
+    - sh .gitlab-test.sh
   tags:
     - docker
 
 stage_job:
   stage: staging_deploy
   script:
-    - bash .gitlab-staging-deploy.sh # Change this to .gitlab-staging-pull-deploy.sh for PULL deployments
+    - sh .gitlab-staging-deploy.sh # Change this to .gitlab-staging-pull-deploy.sh for PULL deployments
   environment:
     name: staging
