@@ -7,9 +7,12 @@ Este repositorio incluye varios archivos requeridos para utilizar GitLab CI en t
 Esto utiliza una imágen Docker que incluye PHP para Laravel desde [este repositorio](https://github.com/GIANTCRAB/php-laravel-env).
 
 ## Soporte
-* PHP 7/7.1
-* Laravel 5.3/5.4
-* MySQL 5.5
+
+| Software | Version |
+| --- | --- |
+| PHP | 7/7.1 |
+| Laravel | 5.3/5.4 |
+| MySQL | 5.5 |
 
 Para moverse entre las versiones de Laravel, navega entre las ramas de este repositorio. La rama maestra siempre tendrá la última imágen.
 
