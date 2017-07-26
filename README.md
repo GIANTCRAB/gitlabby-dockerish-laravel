@@ -2,6 +2,10 @@
 
 > What happens when you Dockerize your Laravel testing environment and throw it at Gitlab CI?
 
+<p align="center">
+	<img src="images/banner.jpg">
+</p>
+
 This repository includes several files required to run the Gitlab CI on your GitLab Laravel repository. The Docker container is pre-packaged with Laravel vendor dependecies, which reduces the number of files required to be downloaded. 
 
 It pulls a Docker image from [this repository](https://github.com/GIANTCRAB/php-laravel-env).
