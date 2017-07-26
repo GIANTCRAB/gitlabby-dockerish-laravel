@@ -12,8 +12,8 @@
 ## Installation steps
 
 1.	Pull your remote branch related of the issue.
-2.  Copy the `scripts/continuous-integration` files and drop them in your GitLab repository local folder.
-3.	Commit the recent added files in your local enviroment.
+2.  Copy the [Continuous integration](../../scripts/continuous-integration) files and drop them in your GitLab repository local folder.
+3.	Commit the recent added files in your local environment.
 4.	Push your local changes to your repository.
 
 <hr>
