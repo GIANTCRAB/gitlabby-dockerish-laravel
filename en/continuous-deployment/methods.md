@@ -1,4 +1,4 @@
-## Continuous Deployment
+# Continuous Deployment
 
 ## Methods
 

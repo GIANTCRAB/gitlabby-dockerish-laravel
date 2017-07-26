@@ -1,30 +1,23 @@
 # Continuous Integration
 
-## Installation
+## I. Installation
 
-Copy the following files and drop them in your GitLab repository: 
+## Checklist
 
-  - .env.gitlab-testing
-  - .gitlab-ci.yml
-  - .gitlab-build.sh
-  - .gitlab-test.sh
+- [ ] Create a issue as `Add GitLab CI`.
+- [ ] Create a merge request and branch related to the issue.
+- [ ] Follow the installation steps.
+- [ ] Close  the issue via merge request.
 
-Open up `.gitlab-ci.yml` and comment or remove the staging information: 
+## Installation steps
 
-```
-before_script:
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-  - eval $(ssh-agent -s)
-  - ssh-add <(echo "$SSH_PRIVATE_KEY")
-  - mkdir -p ~/.ssh
-  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-...
-  - staging_deploy
-...
-stage_job:
-  stage: staging_deploy
-  script:
-    - sh .gitlab-staging-deploy.sh
-  environment:
-    name: staging
-```
+1.	Pull your remote branch related of the issue.
+2.  Copy the `scripts/continuous-integration` files and drop them in your GitLab repository local folder.
+3.	Commit the recent added files in your local enviroment.
+4.	Push your local changes to your repository.
+
+<hr>
+
+Continue with ["Continuous deployment"](../continuous-deployment/introduction.md "Continuous deployment").
+
+Back to ["Index"](../../README.md "Index").

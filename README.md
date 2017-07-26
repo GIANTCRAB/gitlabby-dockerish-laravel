@@ -32,14 +32,14 @@ There are two ways which this can be used -- for continuous integration and cont
 
 ### Continuous Integration
 
-|Chapters|Overview|
-| --- | --- |
+|Chapters|
+| --- | 
 | [I. Introduction](/en/continuous-integration/introduction.md) | ... |
 | [II. Installation](/en/continuous-integration/installation.md) | ... |
 
 ### Continuous Deployment
 
-| Chapters | Overview |
-| --- | --- |
-| [I. Introduction](/en/continuous-deployment/introduction.md) | ... | 
-| [II. Methods](/en/continuous-deployment/methods.md) | ... |
+| Chapters |
+| --- |
+| [I. Introduction](/en/continuous-deployment/introduction.md) | 
+| [II. Methods](/en/continuous-deployment/methods.md) |
