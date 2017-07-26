@@ -1,0 +1,34 @@
+image: woohuiren/php-laravel-env:latest
+
+services:
+  - mysql:latest
+
+variables:
+  MYSQL_DATABASE: laravel
+  MYSQL_ROOT_PASSWORD: secret
+
+stages:
+  - build
+  - test
+
+build_job:
+  stage: build
+  script:
+    - sh .gitlab-build.sh
+  artifacts:
+    paths:
+      - vendor/
+      - bootstrap/
+      - composer.phar
+      - .env
+  tags:
+    - docker
+
+test_job:
+  stage: test
+  dependencies:
+    - build_job
+  script:
+    - sh .gitlab-test.sh
+  tags:
+    - docker
