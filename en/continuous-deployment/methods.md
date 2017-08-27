@@ -18,7 +18,7 @@ The `id_rsa` file must be added on `authorized_keys` file on `.ssh` folder of th
 
 #### Add private key as secret variable
 
-You must copy the `id_rsa` content and paste into a secret variable on your GitLab repository settings. Learn more about this nice feature on this [documentation](https://docs.gitlab.com/ee/ci/variables/)
+You must copy the `id_rsa` content and paste into a secret variable named `SSH_PRIVATE_KEY` on your GitLab repository settings. Learn more about this nice feature on this [documentation](https://docs.gitlab.com/ee/ci/variables/)
 
 #### Grant user permissions to application folder
 
