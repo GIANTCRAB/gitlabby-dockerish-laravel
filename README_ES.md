@@ -20,10 +20,10 @@ Para moverse entre las versiones de Laravel, navega entre las ramas de este repo
 
 Actualmente este repositorio está disponible en sólo dos idiomas, es libre de traducir las instrucciones a otros idiomas e incluso mejorarlas ya existen.
 
-| Idioma | Mantenedor |
-| :---: | --- |
-| [English](README.md) | Huiren Woo [@GIANTCRAB](https://github.com/GIANTCRAB) |
-| Español | Ian Torres [@demency](https://github.com/demency) |
+| Idioma |
+| :---: |
+| [English](README.md) |
+| Español |
 
 ## Contenido
 

@@ -25,10 +25,10 @@ To switch between Laravel versions, change this repository's branch. Master bran
 
 Currently this repository is available in only two languages, feel free to translate the instructions to other languages and even improve those that already exist.
 
-| Language | Maintainer |
-| :---: | --- |
-| English | Huiren Woo [@GIANTCRAB](https://github.com/GIANTCRAB) |
-| [Español](README_ES.md) | Ian Torres [@demency](https://github.com/demency) |
+| Language | 
+| :---: | 
+| English | 
+| [Español](README_ES.md) |
 
 ## Get Started
 

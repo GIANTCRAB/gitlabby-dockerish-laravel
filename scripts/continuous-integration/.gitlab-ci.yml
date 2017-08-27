@@ -21,8 +21,6 @@ build_job:
       - bootstrap/
       - composer.phar
       - .env
-  tags:
-    - docker
 
 test_job:
   stage: test
@@ -30,5 +28,3 @@ test_job:
     - build_job
   script:
     - sh .gitlab-test.sh
-  tags:
-    - docker
