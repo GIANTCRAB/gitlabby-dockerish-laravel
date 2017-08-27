@@ -55,6 +55,8 @@ It consists of pushing the changes to a remote branch of a bare-type remote repo
 | GIT_DEPLOYMENT_REMOTE | Remote Git repository, by default must be `origin` |
 | GIT_DEPLOYMENT_BRANCH | Remote Git branch, by default must be `master` |
 
+<hr>
+
 ### Pull method
 
 It consists of connecting to a remote server to bring all the changes and execute the laravel configurations.
