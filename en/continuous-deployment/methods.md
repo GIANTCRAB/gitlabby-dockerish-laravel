@@ -24,6 +24,8 @@ You must copy the `id_rsa` content and paste into a secret variable named `SSH_P
 
 Be sure to add the appropriate permissions to perform the deployment commands. Read more this StackOverflow [thread](https://serverfault.com/questions/124800/how-to-setup-linux-permissions-for-the-www-folder).
 
+<hr>
+
 ### Push method
 
 It consists of pushing the changes to a remote branch of a bare-type remote repository.
