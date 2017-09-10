@@ -4,7 +4,7 @@ We currently support two deployment method, feel free to add your own method and
 
 ## Methods
 
-oth methods require the configuration of secrets variables from the repository settings panel. So let's configure this first:
+Both methods require the configuration of secrets variables from the repository settings panel. So let's configure this first:
 
 #### Create and authorize a private key
 
