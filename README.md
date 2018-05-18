@@ -10,6 +10,7 @@ It pulls the PHP Laravel image from [this repository](https://github.com/GIANTCR
 * Laravel 5.6
 * MySQL 5.5
 * Redis (Your Laravel will require `predis/predis` composer package)
+* Laravel Dusk (UI automated testing)
 
 # Usage
 
