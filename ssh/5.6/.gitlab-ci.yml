@@ -1,9 +1,5 @@
 image: woohuiren/php-laravel-env:5.6
 
-services:
-  - mysql:latest
-  - redis:latest
-
 before_script:
   # For more information, view https://docs.gitlab.com/ce/ci/ssh_keys/README.html
   # install ssh-agent
@@ -48,6 +44,9 @@ build_job:
 
 test_job:
   stage: test
+  services:
+    - mysql:latest
+    - redis:latest
   dependencies:
     - build_job
   script:

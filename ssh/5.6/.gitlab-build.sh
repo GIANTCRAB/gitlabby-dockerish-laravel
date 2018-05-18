@@ -8,9 +8,6 @@ mv /root/composer.phar .
 # Ensure that php is working
 php -v
 
-# Ensure that mysql server is up and running
-ping -c 3 mysql
-
 # Update project dependencies.
 php composer.phar install
 
