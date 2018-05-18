@@ -42,31 +42,9 @@ stage_job:
 
 ## Continuous Deployment
 
-There are two types of deployment techniques that are commonly used, a push and pull. A push configuration requires the remote endpoint to be a Git server whereas a pull configuration would only require SSH details. Nevertheless, there are different variables required for setting these deployments.
+There are several deployment techniques available: SSH and Docker
 
-### Push configuration
-
-Copy the following files and drop them in your Laravel base repository: 
-
-* .env.gitlab-testing
-* .gitlab-ci.yml
-* .gitlab-key-inject.sh
-* .gitlab-build.sh
-* .gitlab-test.sh
-* .gitlab-staging-deploy.sh
-
-Ensure that your repository has set a Git deployment remote and you have created a SSH key for access to this remote.
-
-Open up `.gitlab-ci.yml` and set the variables for the following: 
-
-```
-  GIT_DEPLOYMENT_URL: git@gitlab.com:woohuiren/test-laravel-project.git
-  GIT_DEPLOYMENT_REMOTE: staging
-  GIT_DEPLOYMENT_BRANCH: master
-  SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
-```
-
-### Pull configuration
+### SSH Deployment
 
 Copy the following files and drop them in your Laravel base repository: 
 
