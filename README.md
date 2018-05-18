@@ -13,47 +13,9 @@ It pulls the PHP Laravel image from [this repository](https://github.com/GIANTCR
 
 # Usage
 
-There are two ways which this can be used -- for continuous integration and continuous deployment. 
-
-## Continuous Integration
-Copy the following files and drop them in your Laravel base repository: 
-
-* .env.gitlab-testing
-* .gitlab-ci.yml
-* .gitlab-build.sh
-* .gitlab-test.sh
-
-Open up `.gitlab-ci.yml` and comment or remove the staging information: 
-
-```
-before_script:
-  # For more information, view https://docs.gitlab.com/ce/ci/ssh_keys/README.html
-  # install ssh-agent
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-  # run ssh-agent
-  - eval $(ssh-agent -s)
-  # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
-  - ssh-add <(echo "$SSH_PRIVATE_KEY")
-  # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
-  # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
-  - mkdir -p ~/.ssh
-  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-...
-  - staging_deploy
-...
-stage_job:
-  stage: staging_deploy
-  script:
-    - sh .gitlab-staging-deploy.sh
-  environment:
-    name: staging
-```
-
-## Continuous Deployment
-
 There are several deployment techniques available: SSH and Docker
 
-### SSH Deployment
+## SSH Deployment
 
 Copy the following files and drop them in your Laravel base repository: 
 
