@@ -6,8 +6,8 @@ This repository includes several files required to run the Gitlab CI for your La
 It pulls the PHP Laravel image from [this repository](https://github.com/GIANTCRAB/php-laravel-env).
 
 ## Support
-* PHP 7/7.1
-* Laravel 5.3/5.4
+* PHP 7.1/7.2
+* Laravel 5.6
 * MySQL 5.5
 
 To switch between Laravel versions, change this repository's branch. Master branch will always have the latest image. 
