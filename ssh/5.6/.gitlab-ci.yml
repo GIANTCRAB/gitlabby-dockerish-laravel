@@ -1,4 +1,4 @@
-image: woohuiren/php-laravel-env:latest
+image: woohuiren/php-laravel-env:5.6
 
 services:
   - mysql:latest
