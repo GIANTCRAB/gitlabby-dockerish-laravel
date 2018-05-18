@@ -28,7 +28,17 @@ Open up `.gitlab-ci.yml` and comment or remove the staging information:
 
 ```
 before_script:
-  - sh .gitlab-key-inject.sh # Script injection for SSH keys used for deployments
+  # For more information, view https://docs.gitlab.com/ce/ci/ssh_keys/README.html
+  # install ssh-agent
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  # run ssh-agent
+  - eval $(ssh-agent -s)
+  # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+  # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+  - mkdir -p ~/.ssh
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 ...
   - staging_deploy
 ...
@@ -50,24 +60,17 @@ Copy the following files and drop them in your Laravel base repository:
 
 * .env.gitlab-testing
 * .gitlab-ci.yml
-* .gitlab-key-inject.sh
 * .gitlab-build.sh
 * .gitlab-test.sh
-* .gitlab-staging-pull-deploy.sh
+* .gitlab-staging-deploy.sh
 
-The SSH private key is used for accessing the staging server. Please ensure that your staging server already has SSH keys necessary to pull the code from the GitLab server.
+Ensure that your repository has set a Git deployment remote and you have created a SSH key for access to this remote.
 
 Open up `.gitlab-ci.yml` and set the variables for the following: 
 
 ```
-  GIT_DEPLOYMENT_REMOTE: origin
+  GIT_DEPLOYMENT_URL: git@gitlab.com:woohuiren/test-laravel-project.git
+  GIT_DEPLOYMENT_REMOTE: staging
   GIT_DEPLOYMENT_BRANCH: master
   SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
-  STAGING_SERVER_HOSTNAME: admin@localhost
-  STAGING_SERVER_DIRECTORY: /home/admin/laravel-project/public
-...
-stage_job:
-  stage: staging_deploy
-  script:
-    - sh .gitlab-staging-pull-deploy.sh
 ```
