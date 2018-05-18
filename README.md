@@ -10,8 +10,6 @@ It pulls the PHP Laravel image from [this repository](https://github.com/GIANTCR
 * Laravel 5.6
 * MySQL 5.5
 
-To switch between Laravel versions, change this repository's branch. Master branch will always have the latest image. 
-
 # Usage
 
 There are two ways which this can be used -- for continuous integration and continuous deployment. 
