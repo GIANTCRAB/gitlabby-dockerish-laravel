@@ -9,6 +9,7 @@ It pulls the PHP Laravel image from [this repository](https://github.com/GIANTCR
 * PHP 7.1/7.2
 * Laravel 5.6
 * MySQL 5.5
+* Redis (Your Laravel will require `predis/predis` composer package)
 
 # Usage
 

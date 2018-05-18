@@ -2,6 +2,7 @@ image: woohuiren/php-laravel-env:latest
 
 services:
   - mysql:latest
+  - redis:latest
 
 before_script:
   # For more information, view https://docs.gitlab.com/ce/ci/ssh_keys/README.html
