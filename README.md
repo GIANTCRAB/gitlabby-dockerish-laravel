@@ -6,25 +6,19 @@ This repository includes several files required to run the Gitlab CI for your La
 It pulls the PHP Laravel image from [this repository](https://github.com/GIANTCRAB/php-laravel-env).
 
 ## Support
-* PHP 7.1/7.2
-* Laravel 5.6
+* PHP 7.1/7.2/7.3
+* Laravel 5.6/5.7
 * MySQL 5.5
 * Redis (Your Laravel will require `predis/predis` composer package)
 * Laravel Dusk (UI automated testing)
 
 # Usage
 
-There are several deployment techniques available: SSH and Docker
+There are several deployment techniques available: SSH and Cloudfoundry
 
 ## SSH Deployment
 
-Copy the following files and drop them in your Laravel base repository: 
-
-* .env.gitlab-testing
-* .gitlab-ci.yml
-* .gitlab-build.sh
-* .gitlab-test.sh
-* .gitlab-staging-deploy.sh
+Copy the files in the ssh directory and drop them to the base of your GitLab repo.
 
 Ensure that your repository has set a Git deployment remote and you have created a SSH key for access to this remote.
 
@@ -36,3 +30,9 @@ Open up `.gitlab-ci.yml` and set the variables for the following:
   GIT_DEPLOYMENT_BRANCH: master
   SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
 ```
+
+## Cloudfoundry
+
+Copy the files in the cloudfoundry directory and drop them to the base of your GitLab repo.
+
+Set the secret variables accordingly.
