@@ -25,10 +25,10 @@ It pulls the PHP Laravel image from [this repository](https://github.com/GIANTCR
 
 ### Laravel Latest (8.0)
 
-* PHP 8.0
+* [PHP 8.0](https://github.com/GIANTCRAB/php-laravel-env/tree/8.0)
 * MySQL
-* Redis (pecl package)
-* Laravel Dusk (UI automated testing)
+* Redis
+* Laravel Dusk
 
 # Usage
 
