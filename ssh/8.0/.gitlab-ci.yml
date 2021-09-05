@@ -1,4 +1,4 @@
-image: woohuiren/php-laravel-env:latest
+image: woohuiren/php-laravel-env:8.0
 
 before_script:
   # For more information, view https://docs.gitlab.com/ce/ci/ssh_keys/README.html
