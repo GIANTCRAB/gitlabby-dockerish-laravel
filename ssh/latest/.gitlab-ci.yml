@@ -1,0 +1,61 @@
+image: woohuiren/php-laravel-env:latest
+
+before_script:
+  # For more information, view https://docs.gitlab.com/ce/ci/ssh_keys/README.html
+  # install ssh-agent
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  # run ssh-agent
+  - eval $(ssh-agent -s)
+  # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/staging_deploy_private_key
+  - chmod 400 ~/.ssh/staging_deploy_private_key
+  # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
+  # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
+  - mkdir -p ~/.ssh
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+variables:
+  MYSQL_DATABASE: laravel
+  MYSQL_ROOT_PASSWORD: secret
+  SSH_PRIVATE_KEY: somethingsomethingblahblah # Recommended to put into GitLab secret variables instead
+  GIT_DEPLOYMENT_REMOTE: origin
+  GIT_DEPLOYMENT_BRANCH: master
+  STAGING_SERVER_HOSTNAME: admin@localhost
+  STAGING_SERVER_DIRECTORY: /home/admin/laravel-project/public
+
+stages:
+  - build
+  - test
+  - staging_deploy
+
+build_job:
+  stage: build
+  script:
+    - sh .gitlab-build.sh
+  artifacts:
+    paths:
+      - vendor/
+      - bootstrap/
+      - .env
+  tags:
+    - docker
+
+test_job:
+  stage: test
+  services:
+    - mysql:latest
+    - redis:latest
+  dependencies:
+    - build_job
+  script:
+    - sh .gitlab-test.sh
+  tags:
+    - docker
+
+stage_job:
+  stage: staging_deploy
+  script:
+    - sh .gitlab-staging-pull-deploy.sh
+  environment:
+    name: staging

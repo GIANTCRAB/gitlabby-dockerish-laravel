@@ -1,15 +1,33 @@
 # Gitlabby Dockerish Laravel
+
 What happens when you Dockerize your Laravel testing environment and throw it at Gitlab CI?
 
-This repository includes several files required to run the Gitlab CI for your Laravel. The Docker container is pre-packaged with Laravel vendor dependecies, which reduces the number of files required to be downloaded. 
+This repository includes several files required to run the Gitlab CI for your Laravel. The Docker container is
+pre-packaged with Laravel vendor dependecies, which reduces the number of files required to be downloaded.
 
 It pulls the PHP Laravel image from [this repository](https://github.com/GIANTCRAB/php-laravel-env).
 
 ## Support
+
+### Laravel 5.6
+
 * PHP 7.1/7.2/7.3
-* Laravel 5.6/5.7
-* MySQL 5.5
+* MySQL
 * Redis (Your Laravel will require `predis/predis` composer package)
+* Laravel Dusk (UI automated testing)
+
+### Laravel 5.7
+
+* PHP 7.1/7.2/7.3
+* MySQL
+* Redis (Your Laravel will require `predis/predis` composer package)
+* Laravel Dusk (UI automated testing)
+
+### Laravel Latest (8.0)
+
+* PHP 8.0
+* MySQL
+* Redis (pecl package)
 * Laravel Dusk (UI automated testing)
 
 # Usage
@@ -22,7 +40,7 @@ Copy the files in the ssh directory and drop them to the base of your GitLab rep
 
 Ensure that your repository has set a Git deployment remote and you have created a SSH key for access to this remote.
 
-Open up `.gitlab-ci.yml` and set the variables for the following: 
+Open up `.gitlab-ci.yml` and set the variables for the following:
 
 ```
   GIT_DEPLOYMENT_URL: git@gitlab.com:woohuiren/test-laravel-project.git
